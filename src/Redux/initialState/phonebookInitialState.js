@@ -1,6 +1,8 @@
 import { defaultContacts } from './defaultContacts';
 
 export const phonebookInitialState = {
-  contacts: defaultContacts,
+  contacts: [],
   filter: '',
+  isLoading: false,
+  error:'',
 };
