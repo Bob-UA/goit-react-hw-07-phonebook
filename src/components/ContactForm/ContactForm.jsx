@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import css from "./ContactForm.module.css";
 import { useDispatch, useSelector } from 'react-redux';
-import { addContact } from 'Redux/phonebookSlice';
 import { nanoid } from '@reduxjs/toolkit';
 import { getContacts } from 'Redux/selectors';
 import { addContactsThunk } from 'Redux/thunk';
