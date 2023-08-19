@@ -9,8 +9,9 @@ import { addContactsThunk } from 'Redux/thunk';
 
 function ContactForm() {
   const [name, setName] = useState('');
-  const [number, setNumber] = useState('');
+  const [phone, setPhone] = useState('');
   
+  const date = new Date();
   const nameInput = nanoid();
   const phoneInput = nanoid();
 
@@ -24,18 +25,18 @@ function ContactForm() {
       setName(target.value);
     }
     if (target.name === "number") {
-      setNumber(target.value);
+      setPhone(target.value);
     }
   };
   
 const reset = () => {
   setName('');
-  setNumber('');
+  setPhone('');
 };
   
   const handleSubmit = e => {
     e.preventDefault();
-    const data = { id: nanoid(), name, number };
+    const data = { createdAt: date.toString(), name, phone,  id: nanoid()};
     contacts.find(option => option.name === data.name)
     ? alert(`${data.name} is already in contacts`)
     : dispatch(addContactsThunk(data));
@@ -65,7 +66,7 @@ const reset = () => {
             <input
               type="tel"
               name="number"
-              value={number}
+              value={phone}
               onChange={handleChange}
               pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
               title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"

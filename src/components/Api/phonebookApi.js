@@ -9,6 +9,7 @@ export const getContacts = async () => {
 export const addContact = async (data) => {
     const res = await fetch(BASE_URL, {
       method: 'POST',
+      headers: { 'content-type': 'application/json' },
       body: JSON.stringify(data),
     });
     return await res.json()
