@@ -12,8 +12,10 @@
     margin-top: 20px;
 }
 
-.name{
-
+.loader{
+display:flex;
+align-items: center;
+justify-content: center;
 }
 
 .phone{
