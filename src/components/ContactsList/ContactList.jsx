@@ -3,6 +3,8 @@ import css from './ContactList.module.css'
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'Redux/phonebookSlice';
 import { getContacts, getFilter } from 'Redux/selectors';
+import { useEffect } from 'react';
+import { getContactsThunk } from 'Redux/thunk';
 
 
 
@@ -18,6 +20,12 @@ function ContactList () {
     );
     dispatch(deleteContact(contactsAfterDelete));
   };
+
+  
+  useEffect(() => {
+    dispatch(getContactsThunk());
+  }, [dispatch]);
+
 
     const getVisibleContacts = () => {
       const normalizedFilter = filter.toLowerCase();

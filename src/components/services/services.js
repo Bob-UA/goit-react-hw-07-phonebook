@@ -2,24 +2,24 @@ export const handlePending = state => {
   state.isLoading = true;
 };
 
-export const handleFulfilled = ({ isLoading, error }) => {
-  isLoading = false;
-  error = '';
+export const handleFulfilled = (state) => {
+  state.isLoading = false;
+  state.error = '';
 };
 
-export const handleFulfilledGet = ({ contacts }, { payload }) => {
-  contacts = payload;
+export const handleFulfilledGet = ( state, { payload }) => {
+  state.contacts = payload;
 };
 
-export const handleFulfilledAdd = ({ contacts }, { payload }) => {
-  contacts.push(payload);
+export const handleFulfilledAdd = (state, { payload }) => {
+  state.contacts.push(payload);
 };
 
-export const handleFulfilledDelete = ({ contacts }, { payload }) => {
-  contacts = contacts.filter(el => el.id !== payload.id);
+export const handleFulfilledDelete = (state, { payload }) => {
+  state.contacts = state.contacts.filter(el => el.id !== payload.id);
 };
 
-export const handleRejected = ({ isLoading, error }, { payload }) => {
-  isLoading = false;
-  error = payload;
+export const handleRejected = (state, { payload }) => {
+  state.isLoading = false;
+  state.error = payload;
 };
