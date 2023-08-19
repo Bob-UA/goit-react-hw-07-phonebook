@@ -1,7 +1,9 @@
 
 export const phonebookInitialState = {
-  contacts: [],
+  contacts: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
   filter: '',
-  isLoading: false,
-  error:'',
 };

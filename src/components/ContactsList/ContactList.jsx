@@ -1,27 +1,23 @@
 import { nanoid } from '@reduxjs/toolkit';
 import css from './ContactList.module.css'
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from 'Redux/phonebookSlice';
 import { getContacts, getFilter } from 'Redux/selectors';
 import { useEffect } from 'react';
-import { getContactsThunk } from 'Redux/thunk';
+import { deleteContactsThunk, getContactsThunk } from 'Redux/thunk';
 
 
 
-function ContactList () {
+function ContactList() {
   const contacts = useSelector(getContacts);
   const filter = useSelector(getFilter);
-
+  
   const dispatch = useDispatch();
 
   const onDeleteContact = contactId => {
-    const contactsAfterDelete = contacts.filter(
-      contact => contact.id !== contactId
-    );
-    dispatch(deleteContact(contactsAfterDelete));
+    dispatch(deleteContactsThunk(contactId));
   };
 
-  
+
   useEffect(() => {
     dispatch(getContactsThunk());
   }, [dispatch]);
@@ -38,10 +34,10 @@ function ContactList () {
 
   return (
     <ul className={css.list}>
-      {visibleContacts.map(({ id = nanoid(), name, number }) => (
+      {visibleContacts.map(({ id = nanoid(), name, phone }) => (
         <li key={id} className={css.item}>
           <p className={css.name}>{name}</p>
-          <p className={css.number}>{number}</p>
+          <p className={css.phone}>{phone}</p>
           <button className={css.btn} onClick={() => onDeleteContact(id)}>
             Delete
           </button>

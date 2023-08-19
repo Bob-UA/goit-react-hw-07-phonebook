@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'Redux/phonebookSlice';
 import { nanoid } from '@reduxjs/toolkit';
 import { getContacts } from 'Redux/selectors';
+import { addContactsThunk } from 'Redux/thunk';
 
 
 
@@ -38,7 +39,7 @@ const reset = () => {
     const data = { id: nanoid(), name, number };
     contacts.find(option => option.name === data.name)
     ? alert(`${data.name} is already in contacts`)
-    : dispatch(addContact(data));
+    : dispatch(addContactsThunk(data));
     reset();
   };
 

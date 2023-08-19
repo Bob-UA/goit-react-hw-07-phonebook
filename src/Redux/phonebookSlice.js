@@ -15,7 +15,7 @@ const STATUS = {
 
 
 export const phonebookSlice = createSlice({
-  name: 'phonebook',
+  name: 'contacts',
   initialState: phonebookInitialState,
   extraReducers: builder => {
     builder
@@ -47,21 +47,14 @@ export const phonebookSlice = createSlice({
         handleFulfilled
       );
   },
-
-  // reducers: {
-  //   addContact: (state, action) => {
-  //   state.contacts = [...state.contacts, action.payload];
-  //   },
-  //   deleteContact: (state, action) => {
-  //     state.contacts = action.payload
-  //   },
-  //   changeFilter: (state, action) => {
-  //     state.filter = action.payload;
-  //   },
-  // },
+  reducers: {
+    changeFilter: (state, action) => {
+      state.filter = action.payload;
+    },
+  },
 });
 
-export const { addContact, changeFilter, deleteContact } =
+export const { changeFilter } =
   phonebookSlice.actions;
 
 

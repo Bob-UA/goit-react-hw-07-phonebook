@@ -1,25 +1,27 @@
 export const handlePending = state => {
-  state.isLoading = true;
+  state.contacts.isLoading = true;
 };
 
 export const handleFulfilled = (state) => {
-  state.isLoading = false;
-  state.error = '';
+  state.contacts.isLoading = false;
+  state.contacts.error = '';
 };
 
 export const handleFulfilledGet = ( state, { payload }) => {
-  state.contacts = payload;
+  state.contacts.items = payload;
 };
 
 export const handleFulfilledAdd = (state, { payload }) => {
-  state.contacts.push(payload);
+  state.contacts.items.push(payload);
 };
 
 export const handleFulfilledDelete = (state, { payload }) => {
-  state.contacts = state.contacts.filter(el => el.id !== payload.id);
+  state.contacts.items = state.contacts.items.filter(
+    el => el.id !== payload.id
+  );
 };
 
 export const handleRejected = (state, { payload }) => {
-  state.isLoading = false;
-  state.error = payload;
+  state.contacts.isLoading = false;
+  state.contacts.error = payload;
 };
